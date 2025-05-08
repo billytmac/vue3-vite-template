@@ -1,5 +1,4 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -19,6 +18,10 @@ import Components from 'unplugin-vue-components/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    vue(),
+    VueSetupExtend(),
+    vueJsx(),
+    visualizer(),
     AutoImport({
       imports: ['vue', 'pinia'],
       dts: '.src/type/auto-imports.d.ts',
@@ -44,10 +47,6 @@ export default defineConfig({
       // extensions: ['jpg', 'png', 'jpeg', 'svg', 'webp'], // 支持的图片格式
       // customResolvers: [], // 自定义路径解析规则（可选）
     }),
-    visualizer(),
-    vue(),
-    VueSetupExtend(),
-    vueJsx(),
   ],
   resolve: {
     alias: {
