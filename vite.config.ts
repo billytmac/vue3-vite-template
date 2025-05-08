@@ -11,6 +11,10 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import ViteImages from 'vite-plugin-vue-images'
 // 打包体积分析插件
 import { visualizer } from 'rollup-plugin-visualizer'
+// 按需加载组件，不用手动引入
+import Components from 'unplugin-vue-components/vite'
+// 自带各个UI库的解析器
+// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -24,6 +28,16 @@ export default defineConfig({
         // provide path ending with `.mjs` or `.cjs` to generate the file with the respective format
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
+    }),
+    Components({
+      // 指定组件所在文件夹的位置，默认是 src/components
+      dirs: ['src/components'],
+      // UI 库解析器
+      resolvers: [
+        // ElementPlusResolver(),
+      ],
+      // 配置 type 文件生成位置
+      dts: 'src/type/components.d.ts',
     }),
     ViteImages({
       // dirs: ['src/assets/images'], // 指定图片存放目录（可多个）
