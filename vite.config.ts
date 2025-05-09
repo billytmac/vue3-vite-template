@@ -10,9 +10,11 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { visualizer } from 'rollup-plugin-visualizer'
 // 按需加载组件，不用手动引入
 import Components from 'unplugin-vue-components/vite'
+
+import UnoCSS from 'unocss/vite'
+
 // 自带各个UI库的解析器
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
-
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -20,6 +22,7 @@ export default defineConfig({
     VueSetupExtend(),
     vueJsx(),
     visualizer(),
+    UnoCSS(),
     AutoImport({
       imports: ['vue', 'pinia'],
       dts: '.src/type/auto-imports.d.ts',
